@@ -18,3 +18,8 @@ REST API yang berisikan operasi auth dasar seperti `login`, `generateAccessToken
    ```
 2. The Node Express Service will run on port :80
 3. Enjoy :)
+
+# Credential
+
+Username: `aarridho`
+Password: `123456`
