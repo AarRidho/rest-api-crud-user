@@ -1,7 +1,13 @@
 const router = require('express').Router();
+const controllers = require('./controllers');
 
-router.get('/', (req, res) => {
-    return res.json({ message: 'welcome', status: 200 });
-});
+// POST /login
+router.post('/login', controllers.login);
+
+// POST /token
+router.post('/token', controllers.generateAccessToken);
+
+// GET /revoke
+router.post('/revoke', controllers.revokeRefreshToken);
 
 module.exports = router;

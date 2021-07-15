@@ -4,15 +4,25 @@
     "private": true,
     "scripts": {
         "start": "node ./bin/www",
-        "dev": "nodemon  ./bin/www"
+        "dev": "nodemon  ./bin/www",
+        "migrate:create": "migrate create --template-file ./src/migrations/utils/template.js --migrations-dir=\"./src/migrations/migrations\"",
+        "migrate:up": "migrate --migrations-dir=\"./src/migrations/migrations\" up",
+        "migrate:down": "migrate --migrations-dir=\"./src/migrations/migrations\" down"
     },
     "dependencies": {
+        "@supercharge/request-ip": "^1.1.2",
+        "bcrypt": "^5.0.1",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
+        "dotenv": "^10.0.0",
         "express": "~4.16.1",
         "hbs": "^4.1.2",
         "http-errors": "~1.6.3",
-        "morgan": "~1.9.1"
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.13.2",
+        "morgan": "~1.9.1",
+        "passport": "^0.4.1",
+        "passport-jwt": "^4.0.0"
     },
     "devDependencies": {
         "eslint": "^7.30.0",

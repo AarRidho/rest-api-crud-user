@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const result = require('../../utils/helpers/result');
 
-router.get('/', (req, res) => {
-    return res.json({ message: 'welcome', status: 200 });
-});
+router.get('/', (req, res) => result.response(res, 200, 'welcome'));
 
 module.exports = router;

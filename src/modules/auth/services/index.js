@@ -1,0 +1,1 @@
+exports.getByUsername = require('./getByUsername');
