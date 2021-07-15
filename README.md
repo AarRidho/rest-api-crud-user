@@ -23,3 +23,7 @@ REST API yang berisikan operasi auth dasar seperti `login`, `generateAccessToken
 
 Username: `aarridho`
 Password: `123456`
+
+# Documentation
+
+Postman Doc: https://documenter.getpostman.com/view/10488671/TzmBCtNk
