@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const { MONGO_INITDB_URL, MONGO_INITDB_ROOT_USERNAME, MONGO_INITDB_ROOT_PASSWORD, MONGO_INITDB_NAME } = process.env;
 
-mongoose.connect(MONGO_INITDB_URL, {
+mongoose.connect('mongodb://' + MONGO_INITDB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     user: MONGO_INITDB_ROOT_USERNAME,

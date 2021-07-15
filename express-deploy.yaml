@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-deploy
+  labels:
+    app: express-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-deploy
+  template:
+    metadata:
+      labels:
+        app: express-deploy
+    spec:
+      containers:
+        - name: express-deploy
+          image: aarridho/express-mongo
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: express-secret
+                  key: mongo-root-username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: express-secret
+                  key: mongo-root-password
+            - name: MONGO_INITDB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configmap
+                  key: database_url
+            - name: MONGO_INITDB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: express-secret
+                  key: mongo-db-name
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: express-secret
+                  key: access-token-secret
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: express-secret
+                  key: refresh-token-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-deploy-service
+spec:
+  selector:
+    app: express-deploy
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 30002

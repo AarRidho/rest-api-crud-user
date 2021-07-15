@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const users = require('../../models/users');
+const User = require('../../models/User');
 const { db, init } = require('../../lib/mongoose');
 
 init();
@@ -10,13 +10,10 @@ exports.up = async () => {
      */
 
     try {
-        await users.createCollection();
-
         let password = bcrypt.hashSync('123456', 10);
+        const user = new User({ username: 'aarridho', email: 'aar.frontline@gmail.com', password, role: 'Admin' });
 
-        await users.insertMany([
-            { username: 'aarridho', email: 'aar.frontline@gmail.com', password },
-        ]);
+        await User.create(user);
 
         console.log('done migrating users!');
 
