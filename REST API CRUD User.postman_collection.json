@@ -1,0 +1,1448 @@
+{
+	"info": {
+		"_postman_id": "8a695c97-612d-4634-b9bc-734ceee8a787",
+		"name": "REST API CRUD User",
+		"description": "# Overview\nREST API yang berisikan operasi auth dasar seperti `login`, `generateAccessToken`, `revokeToken` dan operasi CRUD pada user.\n\n# Status Codes\n1. 200: `Success`\n2. 400: `Bad Request`\n3. 401: `Unauthorized`\n4. 404: `Not Found`, `User Not Found`\n5. 500: `Internal Server Error`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    let response = JSON.parse(pm.response.text())\r",
+									"    pm.collectionVariables.set(\"accessToken\", response.data.accessToken);\r",
+									"    pm.collectionVariables.set(\"refreshToken\", response.data.refreshToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "aarridho",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1810"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"712-Fn6NfgbrSb6GhKmmUzYuWaCN85I\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:15:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNjBlZWI3YTY0MzRkNTUyMjFjYTAxZjQ0Iiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsicm9sZSI6ImluaXQiLCJwYXNzd29yZCI6ImluaXQiLCJ1c2VybmFtZSI6ImluaXQiLCJlbWFpbCI6ImluaXQiLCJfaWQiOiJpbml0IiwiX192IjoiaW5pdCIsImNyZWF0ZWRBdCI6ImluaXQiLCJ1cGRhdGVkQXQiOiJpbml0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7fSwiaW5pdCI6eyJfaWQiOnRydWUsInVzZXJuYW1lIjp0cnVlLCJlbWFpbCI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsInJvbGUiOnRydWUsIl9fdiI6dHJ1ZSwiY3JlYXRlZEF0Ijp0cnVlLCJ1cGRhdGVkQXQiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJwYXRoc1RvU2NvcGVzIjp7fSwiY2FjaGVkUmVxdWlyZWQiOnt9LCJzZXNzaW9uIjpudWxsLCIkc2V0Q2FsbGVkIjp7fSwiZW1pdHRlciI6eyJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfSwiJG9wdGlvbnMiOnsic2tpcElkIjp0cnVlLCJpc05ldyI6ZmFsc2UsIndpbGxJbml0Ijp0cnVlLCJkZWZhdWx0cyI6dHJ1ZX19LCJpc05ldyI6ZmFsc2UsIiRsb2NhbHMiOnt9LCIkb3AiOm51bGwsIl9kb2MiOnsiX2lkIjoiNjBlZWI3YTY0MzRkNTUyMjFjYTAxZjQ0IiwidXNlcm5hbWUiOiJhYXJyaWRobyIsImVtYWlsIjoiYWFyLmZyb250bGluZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRDa2I5d0xrNGFMSk9mTzNETXMyMEIudGlqOGV6R2kvM1FQdW5iLzZnd1hvQ1hHUE1qVE81VyIsInJvbGUiOiJBZG1pbiIsIl9fdiI6MCwiY3JlYXRlZEF0IjoiMjAyMS0wNy0xNFQxMDowODozOC4xMTdaIiwidXBkYXRlZEF0IjoiMjAyMS0wNy0xNVQwNzo1NToxMC4zMjZaIn0sIiRpbml0Ijp0cnVlLCJpZCI6IjYwZWViN2E2NDM0ZDU1MjIxY2EwMWY0NCIsImlhdCI6MTYyNjMzNjkwNiwiZXhwIjoxNjI2MzM4NzA2fQ.JJDMR9iTwQM1HNk_3S5-GYoJtgiNpW42iwZzPoV0Ehs\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWViN2E2NDM0ZDU1MjIxY2EwMWY0NCIsImlwIjoiOjoxIiwiaWF0IjoxNjI2MzM2OTA2LCJleHAiOjE2MjY0MjMzMDZ9.3ucXthwfNRIBe_soNdofzrar4PbCqsujpaNwZK8WKtQ\"\n    }\n}"
+						},
+						{
+							"name": "Login Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "aarridhoo",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-5/OfeGUzz0mETWOaNprd4HLC6Xw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:15:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Revoke Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/revoke",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"revoke"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Revoke Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/revoke",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"revoke"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-8FOTxFq/MpR8gbmAgwczR6x7SUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:16:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Generate New Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    let response = JSON.parse(pm.response.text())\r",
+									"    pm.collectionVariables.set(\"accessToken\", response.data.accessToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Generate Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "245"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f5-PHzz7mqkWeQ/XLNt6drwErIwUDc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:17:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWViN2E2NDM0ZDU1MjIxY2EwMWY0NCIsImlwIjoiOjoxIiwiaWF0IjoxNjI2MzM3MDM0LCJleHAiOjE2MjYzMzg4MzR9.YI9puooiFRSnlWIun9hfxSa0oSHSmqTgoB00MqeF-hE\"\n    }\n}"
+						},
+						{
+							"name": "Token Expired",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-ZG8F6/AWRZajlBS5egmBs7sP79g\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:17:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"Token is Expired\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder ini berisikan List API yang dapat digunakan untuk operasi `authentication`"
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/all",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "148"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"94-wL/uT8Y35e/vio+2Ae1m7vc1JHk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:17:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"60eeb7a6434d55221ca01f44\",\n            \"email\": \"aar.frontline@gmail.com\",\n            \"username\": \"aarridho\",\n            \"role\": \"Admin\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/id/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"id",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123123asdasd"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60eeb7a6434d55221ca01f44"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "146"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"92-bW2RTirOhhO2A8NVeLXgHDtXWy0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:18:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"60eeb7a6434d55221ca01f44\",\n        \"email\": \"aar.frontline@gmail.com\",\n        \"username\": \"aarridho\",\n        \"role\": \"Admin\"\n    }\n}"
+						},
+						{
+							"name": "Id Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "123123asdasd"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-J3a7vSBtRZaj3VSaipoMC7DvQe8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:20:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"message\": \"User Not Found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "kocak1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "User",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "kocak1@gmail.com",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "kocak1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "User",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kocak1@gmail.com",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"88-qgBTj6jBBBJFzcPBoJxcO6ApJKg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:18:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"60efef5fcccf31696014c07f\",\n        \"email\": \"kocak1@gmail.com\",\n        \"username\": \"kocak1\",\n        \"role\": \"User\"\n    }\n}"
+						},
+						{
+							"name": "Duplicate Username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "kocak1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "User",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kocak1@gmail.com",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-O1UqB1KEHLiDiYKubqjLwAVNgwU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:20:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Username already exists\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "aarridho",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "aar.frontline@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/users/id/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"id",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60eeb7a6434d55221ca01f44"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "kocak1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "User",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kocak1@gmail.com",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60efef5fcccf31696014c07f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"88-qgBTj6jBBBJFzcPBoJxcO6ApJKg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:24:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"60efef5fcccf31696014c07f\",\n        \"email\": \"kocak1@gmail.com\",\n        \"username\": \"kocak1\",\n        \"role\": \"User\"\n    }\n}"
+						},
+						{
+							"name": "Duplicate Value",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "kocak1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "User",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kocak1@gmail.com",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60eeb7a6434d55221ca01f44"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-9CbhGboJX0XY75qqxTxhGDFy2R0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:23:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"Duplicate Value\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Id Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "kocak1",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "User",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "kocak1@gmail.com",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60efef5fcccf31696014c07f"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-J3a7vSBtRZaj3VSaipoMC7DvQe8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:26:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"message\": \"User Not Found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/id/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"id",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60efef5fcccf31696014c07f"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60efef5fcccf31696014c07f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "157"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9d-MyrtA0tKJWK+eMQsAXpyRcTuFSI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:24:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success Deleting\",\n    \"data\": {\n        \"deleted\": {\n            \"id\": \"60efef5fcccf31696014c07f\",\n            \"email\": \"kocak1@gmail.com\",\n            \"username\": \"kocak1\",\n            \"role\": \"User\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Id Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/users/id/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"id",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60efef5fcccf31696014c07f"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-CfrAI7WAo2fyzV8ZxmJW+P5gh8A\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Jul 2021 08:24:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"User Not Found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		}
+	]
+}
